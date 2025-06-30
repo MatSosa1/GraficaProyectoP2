@@ -1,4 +1,5 @@
-﻿using Shape;
+﻿using ProyectoGrafica_3D.src.utils;
+using Shape;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -72,26 +73,15 @@ namespace ProyectoGrafica_3D
             }
         }
 
-        private List<int> InterpolateData(int cant, int steps)
-        {
-            var list = new List<int>();
-            int i;
-
-            for (i = 0; i < cant; i++)
-                list.Add(i * steps);
-
-            for (i = i - 1; i >= 0; i--)
-                list.Add(i * steps);
-
-            return list;
-        }
-
         private void btnNew_Click(object sender, EventArgs e)
         {
-            int cantValues = 5;
-            int stepsValues = 5;
+            int cantValues = 25;
+            int stepsValues = 3;
 
-            s = new Shape3D(4, GetCanvasCenter(), InterpolateData(cantValues, stepsValues), stepsValues);
+            var listFloors = Interpolate.ReverseValues(Interpolate.InterpolateGradualData(cantValues, stepsValues));
+            listFloors.AddRange(Interpolate.InterpolateGradualData(cantValues, stepsValues));
+
+            s = new Shape3D(12, GetCanvasCenter(), listFloors, stepsValues);
 
             DrawShape3D(s);
         }
