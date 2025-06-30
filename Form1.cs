@@ -72,9 +72,26 @@ namespace ProyectoGrafica_3D
             }
         }
 
+        private List<int> InterpolateData(int cant, int steps)
+        {
+            var list = new List<int>();
+            int i;
+
+            for (i = 0; i < cant; i++)
+                list.Add(i * steps);
+
+            for (i = i - 1; i >= 0; i--)
+                list.Add(i * steps);
+
+            return list;
+        }
+
         private void btnNew_Click(object sender, EventArgs e)
         {
-            s = new Shape3D(4, GetCanvasCenter(), new List<int> { 0, 8, 10, 12, 13, 12, 10, 8, 0 }, 3);
+            int cantValues = 5;
+            int stepsValues = 5;
+
+            s = new Shape3D(4, GetCanvasCenter(), InterpolateData(cantValues, stepsValues), stepsValues);
 
             DrawShape3D(s);
         }
