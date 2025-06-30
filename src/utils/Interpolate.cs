@@ -16,9 +16,6 @@ namespace ProyectoGrafica_3D.src.utils
             for (i = 0; i < cant; i++)
                 list.Add(i * steps);
 
-            for (i = i - 1; i >= 0; i--)
-                list.Add(i * steps);
-
             return list;
         }
 
