@@ -4,4 +4,9 @@
 
 /bin
 /obj
-/Properties
+/bin
+/obj
+
+/vs
+/vscode
+/.vs

@@ -74,7 +74,7 @@ namespace ProyectoGrafica_3D
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            s = new Shape3D(4, GetCanvasCenter(), new List<int> { 0, 30, 90, 60, 90, 30, 0 }, 30);
+            s = new Shape3D(4, GetCanvasCenter(), new List<int> { 0, 8, 10, 12, 13, 12, 10, 8, 0 }, 3);
 
             DrawShape3D(s);
         }
