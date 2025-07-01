@@ -78,10 +78,12 @@ namespace ProyectoGrafica_3D
             int cantValues = 25;
             int stepsValues = 3;
 
-            var listFloors = Interpolate.ReverseValues(Interpolate.InterpolateGradualData(cantValues, stepsValues));
-            listFloors.AddRange(Interpolate.InterpolateGradualData(cantValues, stepsValues));
+            var listFloors = new List<int> { 50, 50 };
 
-            s = new Shape3D(12, GetCanvasCenter(), listFloors, stepsValues);
+            //var listFloors = Interpolate.ReverseValues(Interpolate.InterpolateGradualData(cantValues, stepsValues));
+            //listFloors.AddRange(Interpolate.InterpolateGradualData(cantValues, stepsValues));
+
+            s = new Shape3D(4, GetCanvasCenter(), listFloors, 50);
 
             DrawShape3D(s);
         }

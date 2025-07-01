@@ -83,12 +83,14 @@ namespace Shape
             // Multiplicación de Matrices no es conmutativa: A * B != B * A
             for (int i = 0; i < Sizes.Count; i++)
             {
+                var radius = Sizes[i] * Math.Sin(rad / 2);
+
                 for (int j = 0; j < NumLados; j++)
                 {
                     Vector3 v = new Vector3
                     {
-                        X = Center.X + (double)(Math.Cos(rad * j) * Sizes[i]),
-                        Y = Center.Y + (double)(Math.Sin(rad * j) * Sizes[i]),
+                        X = Center.X + (double)(Math.Cos(rad * j) * radius),
+                        Y = Center.Y + (double)(Math.Sin(rad * j) * radius),
                         Z = i * spaceBetween,
                     };
 
