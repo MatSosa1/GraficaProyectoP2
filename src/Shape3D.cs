@@ -58,6 +58,16 @@ namespace Shape
                 Y = (float)this.Y,
             };
         }
+
+        public Vector3 AddCenter(PointF center)
+        {
+            return new Vector3()
+            {
+                X = this.X + center.X,
+                Y = this.Y + center.Y,
+                Z = this.Z,
+            };
+        }
     }
 
     public class Shape3D
@@ -65,7 +75,7 @@ namespace Shape
         private readonly int NumLados;
         private PointF Center;
         private readonly List<int> Sizes;
-        private double SpaceBetween;
+        private readonly double SpaceBetween;
 
         public List<Vector3> Vectors;
 
@@ -90,8 +100,8 @@ namespace Shape
                 {
                     Vector3 v = new Vector3
                     {
-                        X = Center.X + (double)(Math.Cos(rad * j) * radius),
-                        Y = Center.Y + (double)(Math.Sin(rad * j) * radius),
+                        X = (double)(Math.Cos(rad * j) * radius),
+                        Y = (double)(Math.Sin(rad * j) * radius),
                         Z = -ZInit + (i * spaceBetween),
                     };
 
@@ -119,43 +129,19 @@ namespace Shape
         public void RotateX(double radRotate)
         {
             foreach (var v in Vectors)
-            {
-                v.X -= Center.X;
-                v.Y -= Center.Y;
-
                 v.RotateX(radRotate);
-
-                v.X += Center.X;
-                v.Y += Center.Y;
-            }
         }
 
         public void RotateY(double radRotate)
         {
             foreach (var v in Vectors)
-            {
-                v.X -= Center.X;
-                v.Y -= Center.Y;
-
                 v.RotateY(radRotate);
-
-                v.X += Center.X;
-                v.Y += Center.Y;
-            }
         }
 
         public void RotateZ(double radRotate)
         {
             foreach (var v in Vectors)
-            {
-                v.X -= Center.X;
-                v.Y -= Center.Y;
-
                 v.RotateZ(radRotate);
-
-                v.X += Center.X;
-                v.Y += Center.Y;
-            }
         }
 
 
@@ -178,7 +164,7 @@ namespace Shape
                 List<Vector3> v = new List<Vector3>();
 
                 for (int j = 0; j < NumLados; j++)
-                    v.Add(Vectors[NumLados * i + j]);
+                    v.Add(Vectors[NumLados * i + j].AddCenter(Center));
 
                 polys.Add(v);
             }

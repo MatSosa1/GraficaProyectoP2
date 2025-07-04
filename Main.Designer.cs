@@ -44,7 +44,6 @@
             this.picCanvas.Size = new System.Drawing.Size(873, 421);
             this.picCanvas.TabIndex = 0;
             this.picCanvas.TabStop = false;
-            this.picCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.picCanvas_Paint);
             // 
             // btnNew
             // 

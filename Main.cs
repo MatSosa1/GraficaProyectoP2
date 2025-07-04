@@ -41,7 +41,7 @@ namespace ProyectoGrafica_3D
             };
         }
 
-        private void DrawPolygons(List<List<Vector3>> polys, Graphics g)
+        private void DrawPolygons(List<List<Vector3>> polys)
         {
             foreach (var poly in polys)
             {
@@ -58,11 +58,13 @@ namespace ProyectoGrafica_3D
             g.Clear(Color.White);
         }
 
-        private void DrawShape3D(Graphics e)
+        private void DrawShape3D()
         {
+            ClearCanvas();
+
             var polys = s.GetPolygons();
 
-            DrawPolygons(polys, e);
+            DrawPolygons(polys);
 
             for (int j = 0; j < s.GetSizesLength() - 1; j++)  // Magnitudes
             {
@@ -70,40 +72,44 @@ namespace ProyectoGrafica_3D
                 var pointsPolySup = polys[j + 1];  // Arriba
 
                 for (int i = 0; i < s.GetNumLados(); i++)  // Lados
-                    e.DrawLine(new Pen(Color.Red, 1), pointsPolyInf[i].ToPointF(), pointsPolySup[i].ToPointF());
+                    g.DrawLine(new Pen(Color.Red, 1), pointsPolyInf[i].ToPointF(), pointsPolySup[i].ToPointF());
             }
         }
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            listFloors.Clear();
-            listFloors = Interpolate.InterpolateLinearData(cantValues, stepsValues);
-            listFloors.AddRange(Interpolate.ReverseValues(Interpolate.InterpolateLinearData(cantValues, stepsValues)));
+            //listFloors.Clear();
+            //listFloors = Interpolate.InterpolateLinearData(cantValues, stepsValues);
+            //listFloors.AddRange(Interpolate.InterpolateGradualData(cantValues, stepsValues));
 
-            s = new Shape3D(4, GetCanvasCenter(), listFloors, stepsValues);
+            s = new Shape3D(4, GetCanvasCenter(), new List<int> { 50, 50 }, 50);
 
-            picCanvas.Invalidate();
+            DrawShape3D();
+            //picCanvas.Invalidate();
         }
 
         private void btnRotateZ_Click(object sender, EventArgs e)
         {
             s.RotateZ(Math.PI / 12);
 
-            picCanvas.Invalidate();
+            DrawShape3D();
+            //picCanvas.Invalidate();
         }
 
         private void btnRotateX_Click(object sender, EventArgs e)
         {
             s.RotateX(Math.PI / 12);
 
-            picCanvas.Invalidate();
+            DrawShape3D();
+            //picCanvas.Invalidate();
         }
 
         private void btnRotateY_Click(object sender, EventArgs e)
         {
             s.RotateY(Math.PI / 12);
 
-            picCanvas.Invalidate();
+            DrawShape3D();
+            //picCanvas.Invalidate();
         }
 
         private void Main_SizeChanged(object sender, EventArgs e)
@@ -116,12 +122,9 @@ namespace ProyectoGrafica_3D
             btnRotateY.Location = new Point(picCanvas.Width - picCanvas.Width / 10, btnRotateY.Location.Y);
             btnRotateZ.Location = new Point(picCanvas.Width - picCanvas.Width / 10, btnRotateZ.Location.Y);
 
-            btnNew_Click(sender, e);
-        }
+            g = picCanvas.CreateGraphics();
 
-        private void picCanvas_Paint(object sender, PaintEventArgs e)
-        {
-            DrawShape3D(e.Graphics);
+            //btnNew_Click(sender, e);
         }
     }
 }
