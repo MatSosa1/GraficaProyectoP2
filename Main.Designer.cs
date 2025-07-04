@@ -33,24 +33,25 @@
             this.btnRotateX = new System.Windows.Forms.Button();
             this.btnRotateY = new System.Windows.Forms.Button();
             this.btnRotateZ = new System.Windows.Forms.Button();
+            this.btnTranslateX = new System.Windows.Forms.Button();
+            this.btnTranslateY = new System.Windows.Forms.Button();
+            this.btnTranslateZ = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picCanvas)).BeginInit();
             this.SuspendLayout();
             // 
             // picCanvas
             // 
-            this.picCanvas.Location = new System.Drawing.Point(14, 126);
-            this.picCanvas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.picCanvas.Location = new System.Drawing.Point(12, 101);
             this.picCanvas.Name = "picCanvas";
-            this.picCanvas.Size = new System.Drawing.Size(873, 421);
+            this.picCanvas.Size = new System.Drawing.Size(776, 337);
             this.picCanvas.TabIndex = 0;
             this.picCanvas.TabStop = false;
             // 
             // btnNew
             // 
-            this.btnNew.Location = new System.Drawing.Point(32, 52);
-            this.btnNew.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnNew.Location = new System.Drawing.Point(28, 42);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(126, 29);
+            this.btnNew.Size = new System.Drawing.Size(112, 23);
             this.btnNew.TabIndex = 1;
             this.btnNew.Text = "Nuevo";
             this.btnNew.UseVisualStyleBackColor = true;
@@ -58,10 +59,9 @@
             // 
             // btnRotateX
             // 
-            this.btnRotateX.Location = new System.Drawing.Point(694, 15);
-            this.btnRotateX.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnRotateX.Location = new System.Drawing.Point(617, 12);
             this.btnRotateX.Name = "btnRotateX";
-            this.btnRotateX.Size = new System.Drawing.Size(132, 29);
+            this.btnRotateX.Size = new System.Drawing.Size(117, 23);
             this.btnRotateX.TabIndex = 2;
             this.btnRotateX.Text = "Rotar X";
             this.btnRotateX.UseVisualStyleBackColor = true;
@@ -69,10 +69,9 @@
             // 
             // btnRotateY
             // 
-            this.btnRotateY.Location = new System.Drawing.Point(694, 51);
-            this.btnRotateY.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnRotateY.Location = new System.Drawing.Point(617, 41);
             this.btnRotateY.Name = "btnRotateY";
-            this.btnRotateY.Size = new System.Drawing.Size(132, 29);
+            this.btnRotateY.Size = new System.Drawing.Size(117, 23);
             this.btnRotateY.TabIndex = 3;
             this.btnRotateY.Text = "Rotar Y";
             this.btnRotateY.UseVisualStyleBackColor = true;
@@ -80,26 +79,57 @@
             // 
             // btnRotateZ
             // 
-            this.btnRotateZ.Location = new System.Drawing.Point(694, 88);
-            this.btnRotateZ.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnRotateZ.Location = new System.Drawing.Point(617, 70);
             this.btnRotateZ.Name = "btnRotateZ";
-            this.btnRotateZ.Size = new System.Drawing.Size(132, 29);
+            this.btnRotateZ.Size = new System.Drawing.Size(117, 23);
             this.btnRotateZ.TabIndex = 4;
             this.btnRotateZ.Text = "Rotar Z";
             this.btnRotateZ.UseVisualStyleBackColor = true;
             this.btnRotateZ.Click += new System.EventHandler(this.btnRotateZ_Click);
             // 
+            // btnTranslateX
+            // 
+            this.btnTranslateX.Location = new System.Drawing.Point(473, 12);
+            this.btnTranslateX.Name = "btnTranslateX";
+            this.btnTranslateX.Size = new System.Drawing.Size(117, 23);
+            this.btnTranslateX.TabIndex = 5;
+            this.btnTranslateX.Text = "Desplazar X";
+            this.btnTranslateX.UseVisualStyleBackColor = true;
+            this.btnTranslateX.Click += new System.EventHandler(this.btnTranslateX_Click);
+            // 
+            // btnTranslateY
+            // 
+            this.btnTranslateY.Location = new System.Drawing.Point(473, 42);
+            this.btnTranslateY.Name = "btnTranslateY";
+            this.btnTranslateY.Size = new System.Drawing.Size(117, 23);
+            this.btnTranslateY.TabIndex = 6;
+            this.btnTranslateY.Text = "Desplazar Y";
+            this.btnTranslateY.UseVisualStyleBackColor = true;
+            this.btnTranslateY.Click += new System.EventHandler(this.btnTranslateY_Click);
+            // 
+            // btnTranslateZ
+            // 
+            this.btnTranslateZ.Location = new System.Drawing.Point(473, 72);
+            this.btnTranslateZ.Name = "btnTranslateZ";
+            this.btnTranslateZ.Size = new System.Drawing.Size(117, 23);
+            this.btnTranslateZ.TabIndex = 7;
+            this.btnTranslateZ.Text = "Desplazar Z";
+            this.btnTranslateZ.UseVisualStyleBackColor = true;
+            this.btnTranslateZ.Click += new System.EventHandler(this.btnTranslateZ_Click);
+            // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 562);
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnTranslateZ);
+            this.Controls.Add(this.btnTranslateY);
+            this.Controls.Add(this.btnTranslateX);
             this.Controls.Add(this.btnRotateZ);
             this.Controls.Add(this.btnRotateY);
             this.Controls.Add(this.btnRotateX);
             this.Controls.Add(this.btnNew);
             this.Controls.Add(this.picCanvas);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Main";
             this.Text = "Figuras Tridimensionales";
             this.SizeChanged += new System.EventHandler(this.Main_SizeChanged);
@@ -115,6 +145,9 @@
         private System.Windows.Forms.Button btnRotateX;
         private System.Windows.Forms.Button btnRotateY;
         private System.Windows.Forms.Button btnRotateZ;
+        private System.Windows.Forms.Button btnTranslateX;
+        private System.Windows.Forms.Button btnTranslateY;
+        private System.Windows.Forms.Button btnTranslateZ;
     }
 }
 

@@ -50,6 +50,21 @@ namespace Shape
             Y = x * Math.Sin(radRot) + y * Math.Cos(radRot);
         }
 
+        public void TranslateX(double x)
+        {
+            X += x;
+        }
+
+        public void TranslateY(double y)
+        {
+            Y += y;
+        }
+
+        public void TranslateZ(double z)
+        {
+            Z += z;
+        }
+
         public PointF ToPointF()
         {
             return new PointF
@@ -144,6 +159,23 @@ namespace Shape
                 v.RotateZ(radRotate);
         }
 
+        public void TranslateX(double x)
+        {
+            foreach (var v in Vectors)
+                v.TranslateX(x);
+        }
+
+        public void TranslateY(double y)
+        {
+            foreach (var v in Vectors)
+                v.TranslateY(y);
+        }
+
+        public void TranslateZ(double z)
+        {
+            foreach (var v in Vectors)
+                v.TranslateZ(z);
+        }
 
         public PointF[] GetOutline()
         {

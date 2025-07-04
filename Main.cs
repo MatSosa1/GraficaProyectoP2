@@ -126,5 +126,26 @@ namespace ProyectoGrafica_3D
 
             //btnNew_Click(sender, e);
         }
+
+        private void btnTranslateX_Click(object sender, EventArgs e)
+        {
+            s.TranslateX(10);
+
+            DrawShape3D();
+        }
+
+        private void btnTranslateY_Click(object sender, EventArgs e)
+        {
+            s.TranslateY(10);
+
+            DrawShape3D();
+        }
+
+        private void btnTranslateZ_Click(object sender, EventArgs e)
+        {
+            s.TranslateZ(10);
+
+            DrawShape3D();
+        }
     }
 }
