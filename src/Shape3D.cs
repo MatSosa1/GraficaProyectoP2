@@ -65,6 +65,21 @@ namespace Shape
             Z += z;
         }
 
+        public void ScaleX(double xScaling)
+        {
+            X *= xScaling;
+        }
+
+        public void ScaleY(double yScaling)
+        {
+            Y *= yScaling;
+        }
+
+        public void ScaleZ(double zScaling)
+        {
+            Z *= zScaling;
+        }
+
         public PointF ToPointF()
         {
             return new PointF
@@ -168,13 +183,31 @@ namespace Shape
         public void TranslateY(double y)
         {
             foreach (var v in Vectors)
-                v.TranslateY(y);
+                v.TranslateY(-y);
         }
 
         public void TranslateZ(double z)
         {
             foreach (var v in Vectors)
                 v.TranslateZ(z);
+        }
+
+        public void ScaleX(double x)
+        {
+            foreach (var v in Vectors)
+                v.ScaleX(x);
+        }
+
+        public void ScaleY(double y)
+        {
+            foreach (var v in Vectors)
+                v.ScaleY(y);
+        }
+
+        public void ScaleZ(double z)
+        {
+            foreach (var v in Vectors)
+                v.ScaleZ(z);
         }
 
         public PointF[] GetOutline()

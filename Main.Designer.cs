@@ -36,6 +36,9 @@
             this.btnTranslateX = new System.Windows.Forms.Button();
             this.btnTranslateY = new System.Windows.Forms.Button();
             this.btnTranslateZ = new System.Windows.Forms.Button();
+            this.btnScaleZ = new System.Windows.Forms.Button();
+            this.btnScaleY = new System.Windows.Forms.Button();
+            this.btnScaleX = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picCanvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -117,11 +120,44 @@
             this.btnTranslateZ.UseVisualStyleBackColor = true;
             this.btnTranslateZ.Click += new System.EventHandler(this.btnTranslateZ_Click);
             // 
+            // btnScaleZ
+            // 
+            this.btnScaleZ.Location = new System.Drawing.Point(324, 72);
+            this.btnScaleZ.Name = "btnScaleZ";
+            this.btnScaleZ.Size = new System.Drawing.Size(117, 23);
+            this.btnScaleZ.TabIndex = 10;
+            this.btnScaleZ.Text = "Escalar Z";
+            this.btnScaleZ.UseVisualStyleBackColor = true;
+            this.btnScaleZ.Click += new System.EventHandler(this.btnScaleZ_Click);
+            // 
+            // btnScaleY
+            // 
+            this.btnScaleY.Location = new System.Drawing.Point(324, 42);
+            this.btnScaleY.Name = "btnScaleY";
+            this.btnScaleY.Size = new System.Drawing.Size(117, 23);
+            this.btnScaleY.TabIndex = 9;
+            this.btnScaleY.Text = "Escalar Y";
+            this.btnScaleY.UseVisualStyleBackColor = true;
+            this.btnScaleY.Click += new System.EventHandler(this.btnScaleY_Click);
+            // 
+            // btnScaleX
+            // 
+            this.btnScaleX.Location = new System.Drawing.Point(324, 12);
+            this.btnScaleX.Name = "btnScaleX";
+            this.btnScaleX.Size = new System.Drawing.Size(117, 23);
+            this.btnScaleX.TabIndex = 8;
+            this.btnScaleX.Text = "Escalar X";
+            this.btnScaleX.UseVisualStyleBackColor = true;
+            this.btnScaleX.Click += new System.EventHandler(this.btnScaleX_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnScaleZ);
+            this.Controls.Add(this.btnScaleY);
+            this.Controls.Add(this.btnScaleX);
             this.Controls.Add(this.btnTranslateZ);
             this.Controls.Add(this.btnTranslateY);
             this.Controls.Add(this.btnTranslateX);
@@ -148,6 +184,9 @@
         private System.Windows.Forms.Button btnTranslateX;
         private System.Windows.Forms.Button btnTranslateY;
         private System.Windows.Forms.Button btnTranslateZ;
+        private System.Windows.Forms.Button btnScaleZ;
+        private System.Windows.Forms.Button btnScaleY;
+        private System.Windows.Forms.Button btnScaleX;
     }
 }
 

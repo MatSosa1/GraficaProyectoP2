@@ -82,7 +82,7 @@ namespace ProyectoGrafica_3D
             //listFloors = Interpolate.InterpolateLinearData(cantValues, stepsValues);
             //listFloors.AddRange(Interpolate.InterpolateGradualData(cantValues, stepsValues));
 
-            s = new Shape3D(4, GetCanvasCenter(), new List<int> { 50, 50 }, 50);
+            s = new Shape3D(4, GetCanvasCenter(), new List<int> { 50, 50, 50, 50 }, 50);
 
             DrawShape3D();
             //picCanvas.Invalidate();
@@ -144,6 +144,27 @@ namespace ProyectoGrafica_3D
         private void btnTranslateZ_Click(object sender, EventArgs e)
         {
             s.TranslateZ(10);
+
+            DrawShape3D();
+        }
+
+        private void btnScaleX_Click(object sender, EventArgs e)
+        {
+            s.ScaleX(1.1);
+
+            DrawShape3D();
+        }
+
+        private void btnScaleY_Click(object sender, EventArgs e)
+        {
+            s.ScaleY(1.1);
+
+            DrawShape3D();
+        }
+
+        private void btnScaleZ_Click(object sender, EventArgs e)
+        {
+            s.ScaleZ(1.1);
 
             DrawShape3D();
         }
