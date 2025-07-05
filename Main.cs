@@ -14,6 +14,13 @@ namespace ProyectoGrafica_3D
 {
     public partial class Main : Form
     {
+        private float btnNewRatioX;
+        private float btnRotateXRatioX;
+        private float btnRotateYRatioX;
+        private float btnRotateZRatioX;
+
+        bool menuExpand = false;
+
         private Shape3D s;
 
         private Graphics g;
@@ -117,10 +124,26 @@ namespace ProyectoGrafica_3D
             picCanvas.Width = this.Width;
             picCanvas.Height = this.Height;
 
-            btnNew.Location = new Point(picCanvas.Width / 10, btnNew.Location.Y);
-            btnRotateX.Location = new Point(picCanvas.Width - picCanvas.Width / 10, btnRotateX.Location.Y);
-            btnRotateY.Location = new Point(picCanvas.Width - picCanvas.Width / 10, btnRotateY.Location.Y);
-            btnRotateZ.Location = new Point(picCanvas.Width - picCanvas.Width / 10, btnRotateZ.Location.Y);
+            int rightMargin = 0; 
+            int topMargin = 0;   
+            int spacing = 0;     
+
+            int btnCloseWidth = btnClose.Width;
+            int btnMaximizeWidth = btnMaximize.Width;
+            int btnMinimizeWidth = btnMinimize.Width;
+
+            btnClose.Location = new Point(
+                this.ClientSize.Width - btnCloseWidth - rightMargin,
+                topMargin
+            );
+            btnMaximize.Location = new Point(
+                btnClose.Left - btnMaximizeWidth - spacing,
+                topMargin
+            );
+            btnMinimize.Location = new Point(
+                btnMaximize.Left - btnMinimizeWidth - spacing,
+                topMargin
+            );
 
             g = picCanvas.CreateGraphics();
 
@@ -167,6 +190,70 @@ namespace ProyectoGrafica_3D
             s.ScaleZ(1.1);
 
             DrawShape3D();
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            btnRotateXRatioX = (float)btnRotateX.Location.X / this.Width;
+            btnRotateYRatioX = (float)btnRotateY.Location.X / this.Width;
+            btnRotateZRatioX = (float)btnRotateZ.Location.X / this.Width;
+        }
+
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            menuTimer.Start();
+        }
+
+        private void menuTimer_Tick(object sender, EventArgs e)
+        {
+            if (menuExpand == false)
+            {
+                menuContainer.Width += 10;
+                if (menuContainer.Width >= 400)
+                {
+                    menuTimer.Stop();
+                    menuExpand = true;
+                }
+            }
+            else
+            {
+                menuContainer.Width -= 10;
+                if (menuContainer.Width <= 55)
+                {
+                    menuTimer.Stop();
+                    menuExpand = false;
+                    btnRightArrow.Visible = true;
+                }
+            }
+        }
+
+        private void btnLeftArrow_Click(object sender, EventArgs e)
+        {
+            menuTimer.Start();
+        }
+
+        private void btnRightArrow_Click(object sender, EventArgs e)
+        {
+            menuTimer.Start();
+            btnRightArrow.Visible = false;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+                this.WindowState = FormWindowState.Maximized;
+            else if (this.WindowState == FormWindowState.Maximized)
+                this.WindowState = FormWindowState.Normal;
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }
