@@ -22,6 +22,7 @@ namespace ProyectoGrafica_3D
         bool menuExpand = false;
 
         private Shape3D s;
+        private Shape3D sOriginal;
 
         private Graphics g;
         private Pen pen;
@@ -85,18 +86,15 @@ namespace ProyectoGrafica_3D
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            //listFloors.Clear();
-            //listFloors = Interpolate.InterpolateLinearData(cantValues, stepsValues);
-            //listFloors.AddRange(Interpolate.InterpolateGradualData(cantValues, stepsValues));
-
             s = new Shape3D(4, GetCanvasCenter(), new List<int> { 50, 50, 50, 50 }, 50);
-
+            sOriginal = s.Clone(); // nuevo método que haremos
             DrawShape3D();
-            //picCanvas.Invalidate();
         }
+
 
         private void btnRotateZ_Click(object sender, EventArgs e)
         {
+            if (s == null) { return; }
             s.RotateZ(Math.PI / 12);
 
             DrawShape3D();
@@ -105,6 +103,7 @@ namespace ProyectoGrafica_3D
 
         private void btnRotateX_Click(object sender, EventArgs e)
         {
+            if (s == null) { return; }
             s.RotateX(Math.PI / 12);
 
             DrawShape3D();
@@ -113,6 +112,7 @@ namespace ProyectoGrafica_3D
 
         private void btnRotateY_Click(object sender, EventArgs e)
         {
+            if(s == null) { return; }
             s.RotateY(Math.PI / 12);
 
             DrawShape3D();
@@ -194,9 +194,6 @@ namespace ProyectoGrafica_3D
 
         private void Main_Load(object sender, EventArgs e)
         {
-            btnRotateXRatioX = (float)btnRotateX.Location.X / this.Width;
-            btnRotateYRatioX = (float)btnRotateY.Location.X / this.Width;
-            btnRotateZRatioX = (float)btnRotateZ.Location.X / this.Width;
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
@@ -209,7 +206,7 @@ namespace ProyectoGrafica_3D
             if (menuExpand == false)
             {
                 menuContainer.Width += 10;
-                if (menuContainer.Width >= 400)
+                if (menuContainer.Width >= 320)
                 {
                     menuTimer.Stop();
                     menuExpand = true;
@@ -254,6 +251,43 @@ namespace ProyectoGrafica_3D
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnColorOutline_Click(object sender, EventArgs e)
+        {
+            colorPicker.ShowDialog();
+        }
+
+        private void btnColorInline_Click(object sender, EventArgs e)
+        {
+            colorPicker.ShowDialog();
+        }
+
+        private void trScaleX_ValueChanged()
+        {
+            if (sOriginal == null) return;
+
+            s = sOriginal.Clone();
+            s.ScaleX(trScaleX.Value);
+            DrawShape3D();
+        }
+
+        private void trScaleY_ValueChanged()
+        {
+            if (sOriginal == null) return;
+
+            s = sOriginal.Clone();
+            s.ScaleY(trScaleY.Value);
+            DrawShape3D();
+        }
+
+        private void trScaleZ_ValueChanged()
+        {
+            if (sOriginal == null) return;
+
+            s = sOriginal.Clone();
+            s.ScaleZ(trScaleZ.Value);
+            DrawShape3D();
         }
     }
 }

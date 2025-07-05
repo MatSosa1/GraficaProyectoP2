@@ -236,5 +236,10 @@ namespace Shape
                     
             return polys;
         }
+        public Shape3D Clone()
+        {
+            return new Shape3D(this.NumLados, this.Center, new List<int>(this.Sizes), this.SpaceBetween);
+        }
+
     }
 }
