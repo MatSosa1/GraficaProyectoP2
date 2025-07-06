@@ -31,6 +31,7 @@ namespace ProyectoGrafica_3D
 
         private Graphics g;
         private Pen pen;
+        private Pen inlinePen;
         private List<int> listFloors = new List<int>();
         int cantValues = 50;
         int stepsValues = 2;
@@ -41,6 +42,7 @@ namespace ProyectoGrafica_3D
             g = picCanvas.CreateGraphics();
 
             pen = new Pen(Color.Black, 1);
+            inlinePen = new Pen(Color.Red, 1);
 
             ClearCanvas();
         }
@@ -139,7 +141,7 @@ namespace ProyectoGrafica_3D
                 var pointsPolyInf = polys[j];
                 var pointsPolySup = polys[j + 1];
                 for (int i = 0; i < s.GetNumLados(); i++)
-                    localGraphics.DrawLine(new Pen(Color.Red, 1), pointsPolyInf[i].ToPointF(), pointsPolySup[i].ToPointF());
+                    localGraphics.DrawLine(inlinePen, pointsPolyInf[i].ToPointF(), pointsPolySup[i].ToPointF());
             }
         }
 
@@ -281,13 +283,22 @@ namespace ProyectoGrafica_3D
 
         private void btnColorOutline_Click(object sender, EventArgs e)
         {
-            colorPicker.ShowDialog();
+            if (colorPicker.ShowDialog() == DialogResult.OK)
+            {
+                pen.Color = colorPicker.Color;
+                picCanvas.Invalidate();
+            }
         }
 
         private void btnColorInline_Click(object sender, EventArgs e)
         {
-            colorPicker.ShowDialog();
+            if (colorPicker.ShowDialog() == DialogResult.OK)
+            {
+                inlinePen.Color = colorPicker.Color;
+                picCanvas.Invalidate();
+            }
         }
+
 
         private void trScaleX_ValueChanged()
         {
@@ -304,6 +315,33 @@ namespace ProyectoGrafica_3D
         private void trScaleZ_ValueChanged()
         {
             currentScaleZ = trScaleZ.Value / 10.0;
+            ReapplyTransforms();
+        }
+        private void btnForwardLeft_Click(object sender, EventArgs e)
+        {
+            currentTransX -= 10;
+            ReapplyTransforms();
+        }
+
+        private void btnForwardDown_Click(object sender, EventArgs e)
+        {
+            currentTransY -= 10;
+            ReapplyTransforms();
+        }
+
+        private void btnDiagRight_Click(object sender, EventArgs e)
+        {
+            currentScaleX = Math.Max(0.1, currentScaleX * 0.9);
+            currentScaleY = Math.Max(0.1, currentScaleY * 0.9);
+            currentScaleZ = Math.Max(0.1, currentScaleZ * 0.9);
+            ReapplyTransforms();
+        }
+
+        private void btnDiagLeft_Click(object sender, EventArgs e)
+        {
+            currentScaleX = Math.Min(10, currentScaleX * 1.1);
+            currentScaleY = Math.Min(10, currentScaleY * 1.1);
+            currentScaleZ = Math.Min(10, currentScaleZ * 1.1);
             ReapplyTransforms();
         }
     }
