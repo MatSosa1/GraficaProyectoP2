@@ -97,6 +97,7 @@
             this.picCanvas.Size = new System.Drawing.Size(959, 524);
             this.picCanvas.TabIndex = 0;
             this.picCanvas.TabStop = false;
+            this.picCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.picCanvas_Paint);
             // 
             // btnTranslateX
             // 
@@ -321,32 +322,32 @@
             // 
             this.trScaleX.JumpToMouse = false;
             this.trScaleX.Location = new System.Drawing.Point(68, 212);
-            this.trScaleX.Maximum = 10;
-            this.trScaleX.Minimum = 0;
+            this.trScaleX.Maximum = 20;
+            this.trScaleX.Minimum = 1;
             this.trScaleX.MinimumSize = new System.Drawing.Size(47, 22);
             this.trScaleX.Name = "trScaleX";
             this.trScaleX.Size = new System.Drawing.Size(100, 22);
             this.trScaleX.TabIndex = 24;
             this.trScaleX.Text = "trackBar1";
-            this.trScaleX.Value = 0;
+            this.trScaleX.Value = 1;
             this.trScaleX.ValueDivison = ReaLTaiizor.Controls.TrackBar.ValueDivisor.By1;
-            this.trScaleX.ValueToSet = 0F;
+            this.trScaleX.ValueToSet = 1F;
             this.trScaleX.ValueChanged += new ReaLTaiizor.Controls.TrackBar.ValueChangedEventHandler(this.trScaleX_ValueChanged);
             // 
             // trScaleY
             // 
             this.trScaleY.JumpToMouse = false;
             this.trScaleY.Location = new System.Drawing.Point(220, 212);
-            this.trScaleY.Maximum = 10;
-            this.trScaleY.Minimum = 0;
+            this.trScaleY.Maximum = 20;
+            this.trScaleY.Minimum = 1;
             this.trScaleY.MinimumSize = new System.Drawing.Size(47, 22);
             this.trScaleY.Name = "trScaleY";
             this.trScaleY.Size = new System.Drawing.Size(100, 22);
             this.trScaleY.TabIndex = 26;
             this.trScaleY.Text = "trackBar2";
-            this.trScaleY.Value = 0;
+            this.trScaleY.Value = 1;
             this.trScaleY.ValueDivison = ReaLTaiizor.Controls.TrackBar.ValueDivisor.By1;
-            this.trScaleY.ValueToSet = 0F;
+            this.trScaleY.ValueToSet = 1F;
             this.trScaleY.ValueChanged += new ReaLTaiizor.Controls.TrackBar.ValueChangedEventHandler(this.trScaleY_ValueChanged);
             // 
             // pictureBox6
@@ -363,16 +364,16 @@
             // 
             this.trScaleZ.JumpToMouse = false;
             this.trScaleZ.Location = new System.Drawing.Point(372, 212);
-            this.trScaleZ.Maximum = 10;
-            this.trScaleZ.Minimum = 0;
+            this.trScaleZ.Maximum = 20;
+            this.trScaleZ.Minimum = 1;
             this.trScaleZ.MinimumSize = new System.Drawing.Size(47, 22);
             this.trScaleZ.Name = "trScaleZ";
             this.trScaleZ.Size = new System.Drawing.Size(100, 22);
             this.trScaleZ.TabIndex = 28;
             this.trScaleZ.Text = "trackBar3";
-            this.trScaleZ.Value = 0;
+            this.trScaleZ.Value = 1;
             this.trScaleZ.ValueDivison = ReaLTaiizor.Controls.TrackBar.ValueDivisor.By1;
-            this.trScaleZ.ValueToSet = 0F;
+            this.trScaleZ.ValueToSet = 1F;
             this.trScaleZ.ValueChanged += new ReaLTaiizor.Controls.TrackBar.ValueChangedEventHandler(this.trScaleZ_ValueChanged);
             // 
             // pictureBox7

@@ -14,10 +14,15 @@ namespace ProyectoGrafica_3D
 {
     public partial class Main : Form
     {
-        private float btnNewRatioX;
-        private float btnRotateXRatioX;
-        private float btnRotateYRatioX;
-        private float btnRotateZRatioX;
+        private double currentScaleX = 1;
+        private double currentScaleY = 1;
+        private double currentScaleZ = 1;
+        private double currentRotX = 0;
+        private double currentRotY = 0;
+        private double currentRotZ = 0;
+        private double currentTransX = 0;
+        private double currentTransY = 0;
+        private double currentTransZ = 0;
 
         bool menuExpand = false;
 
@@ -47,6 +52,37 @@ namespace ProyectoGrafica_3D
                 X = picCanvas.Width / 2,
                 Y = picCanvas.Height / 2,
             };
+        }
+
+        private void ReapplyTransforms()
+        {
+            if (sOriginal == null) return;
+
+            s = sOriginal.Clone();
+            s.ScaleX(currentScaleX);
+            s.ScaleY(currentScaleY);
+            s.ScaleZ(currentScaleZ);
+            s.RotateX(currentRotX);
+            s.RotateY(currentRotY);
+            s.RotateZ(currentRotZ);
+            s.TranslateX(currentTransX);
+            s.TranslateY(currentTransY);
+            s.TranslateZ(currentTransZ);
+
+            picCanvas.Invalidate();
+        }
+
+        private void ResetTransforms()
+        {
+            currentScaleX = 1;
+            currentScaleY = 1;
+            currentScaleZ = 1;
+            currentRotX = 0;
+            currentRotY = 0;
+            currentRotZ = 0;
+            currentTransX = 0;
+            currentTransY = 0;
+            currentTransZ = 0;
         }
 
         private void DrawPolygons(List<List<Vector3>> polys)
@@ -84,39 +120,55 @@ namespace ProyectoGrafica_3D
             }
         }
 
+        private void picCanvas_Paint(object sender, PaintEventArgs e)
+        {
+            if (s == null) return;
+
+            var localGraphics = e.Graphics;
+            var polys = s.GetPolygons();
+
+            localGraphics.Clear(Color.White);
+            foreach (var poly in polys)
+            {
+                var points = poly.Select(p => p.ToPointF()).ToArray();
+                localGraphics.DrawPolygon(pen, points);
+            }
+
+            for (int j = 0; j < s.GetSizesLength() - 1; j++)
+            {
+                var pointsPolyInf = polys[j];
+                var pointsPolySup = polys[j + 1];
+                for (int i = 0; i < s.GetNumLados(); i++)
+                    localGraphics.DrawLine(new Pen(Color.Red, 1), pointsPolyInf[i].ToPointF(), pointsPolySup[i].ToPointF());
+            }
+        }
+
+
         private void btnNew_Click(object sender, EventArgs e)
         {
             s = new Shape3D(4, GetCanvasCenter(), new List<int> { 50, 50, 50, 50 }, 50);
-            sOriginal = s.Clone(); // nuevo método que haremos
-            DrawShape3D();
+            sOriginal = s.Clone();
+            ResetTransforms();
+            picCanvas.Invalidate();
         }
 
 
         private void btnRotateZ_Click(object sender, EventArgs e)
         {
-            if (s == null) { return; }
-            s.RotateZ(Math.PI / 12);
-
-            DrawShape3D();
-            //picCanvas.Invalidate();
+            currentRotZ += Math.PI / 12;
+            ReapplyTransforms();
         }
 
         private void btnRotateX_Click(object sender, EventArgs e)
         {
-            if (s == null) { return; }
-            s.RotateX(Math.PI / 12);
-
-            DrawShape3D();
-            //picCanvas.Invalidate();
+            currentRotX += Math.PI / 12;
+            ReapplyTransforms();
         }
 
         private void btnRotateY_Click(object sender, EventArgs e)
         {
-            if(s == null) { return; }
-            s.RotateY(Math.PI / 12);
-
-            DrawShape3D();
-            //picCanvas.Invalidate();
+            currentRotY += Math.PI / 12;
+            ReapplyTransforms();
         }
 
         private void Main_SizeChanged(object sender, EventArgs e)
@@ -146,50 +198,24 @@ namespace ProyectoGrafica_3D
             );
 
             g = picCanvas.CreateGraphics();
-
-            //btnNew_Click(sender, e);
         }
 
         private void btnTranslateX_Click(object sender, EventArgs e)
         {
-            s.TranslateX(10);
-
-            DrawShape3D();
+            currentTransX += 10;
+            ReapplyTransforms();
         }
 
         private void btnTranslateY_Click(object sender, EventArgs e)
         {
-            s.TranslateY(10);
-
-            DrawShape3D();
+            currentTransY += 10;
+            ReapplyTransforms();
         }
 
         private void btnTranslateZ_Click(object sender, EventArgs e)
         {
-            s.TranslateZ(10);
-
-            DrawShape3D();
-        }
-
-        private void btnScaleX_Click(object sender, EventArgs e)
-        {
-            s.ScaleX(1.1);
-
-            DrawShape3D();
-        }
-
-        private void btnScaleY_Click(object sender, EventArgs e)
-        {
-            s.ScaleY(1.1);
-
-            DrawShape3D();
-        }
-
-        private void btnScaleZ_Click(object sender, EventArgs e)
-        {
-            s.ScaleZ(1.1);
-
-            DrawShape3D();
+            currentTransZ += 10;
+            ReapplyTransforms();
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -265,29 +291,20 @@ namespace ProyectoGrafica_3D
 
         private void trScaleX_ValueChanged()
         {
-            if (sOriginal == null) return;
-
-            s = sOriginal.Clone();
-            s.ScaleX(trScaleX.Value);
-            DrawShape3D();
+            currentScaleX = trScaleX.Value / 10.0;
+            ReapplyTransforms();
         }
 
         private void trScaleY_ValueChanged()
         {
-            if (sOriginal == null) return;
-
-            s = sOriginal.Clone();
-            s.ScaleY(trScaleY.Value);
-            DrawShape3D();
+            currentScaleY = trScaleY.Value / 10.0;
+            ReapplyTransforms();
         }
 
         private void trScaleZ_ValueChanged()
         {
-            if (sOriginal == null) return;
-
-            s = sOriginal.Clone();
-            s.ScaleZ(trScaleZ.Value);
-            DrawShape3D();
+            currentScaleZ = trScaleZ.Value / 10.0;
+            ReapplyTransforms();
         }
     }
 }
