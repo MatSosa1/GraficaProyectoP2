@@ -1,4 +1,5 @@
-﻿using ProyectoGrafica_3D.src.utils;
+﻿using ProyectoGrafica_3D.src;
+using ProyectoGrafica_3D.src.utils;
 using Shape;
 using System;
 using System.Collections.Generic;
@@ -343,6 +344,18 @@ namespace ProyectoGrafica_3D
             currentScaleY = Math.Min(10, currentScaleY * 1.1);
             currentScaleZ = Math.Min(10, currentScaleZ * 1.1);
             ReapplyTransforms();
+        }
+
+        // Reference Function
+        private void Draw3DShape()
+        {
+            //s = StaticShapes.GenerateCube(GetCanvasCenter(), 50);
+            //s = StaticShapes.GenerateSphere(GetCanvasCenter(), 10, 50);
+            //s = StaticShapes.GenerateCone(GetCanvasCenter(), 50);
+
+            //sOriginal = s.Clone();
+            //ResetTransforms();
+            //picCanvas.Invalidate();
         }
     }
 }
