@@ -19,7 +19,7 @@ namespace ProyectoGrafica_3D.src.utils
             return list;
         }
 
-        public static List<int> InterpolateGradualData(int cant, int steps)
+        public static List<int> InterpolateGradualData(int cant, double steps)
         {
             var list = new List<int>();
             double radius = (cant - 1) * steps;
