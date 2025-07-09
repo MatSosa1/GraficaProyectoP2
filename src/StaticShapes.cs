@@ -44,5 +44,15 @@ namespace ProyectoGrafica_3D.src
                 size
             );
         }
+
+        public static Shape3D GenerateSandClock(PointF center, int size)
+        {
+            return new Shape3D(
+                20,  // De 8 para arriba (mi pc no da)
+                center,
+                new List<int>() { size, size/10, size },
+                size * 2
+            );
+        }
     }
 }

@@ -61,6 +61,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Polygon.cs" />
     <Compile Include="src\Shape3D.cs" />
+    <Compile Include="src\StaticShapes.cs" />
     <Compile Include="src\utils\Interpolate.cs" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

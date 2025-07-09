@@ -235,7 +235,7 @@ namespace ProyectoGrafica_3D
             if (menuExpand == false)
             {
                 menuContainer.Width += 10;
-                if (menuContainer.Width >= 320)
+                if (menuContainer.Width >= 350)
                 {
                     menuTimer.Stop();
                     menuExpand = true;
@@ -346,16 +346,38 @@ namespace ProyectoGrafica_3D
             ReapplyTransforms();
         }
 
-        // Reference Function
-        private void Draw3DShape()
+        private void resetAndGenerate()
         {
-            //s = StaticShapes.GenerateCube(GetCanvasCenter(), 50);
-            //s = StaticShapes.GenerateSphere(GetCanvasCenter(), 10, 50);
-            //s = StaticShapes.GenerateCone(GetCanvasCenter(), 50);
+            sOriginal = s.Clone();
+            ResetTransforms();
+            picCanvas.Invalidate();
+        }
 
-            //sOriginal = s.Clone();
-            //ResetTransforms();
-            //picCanvas.Invalidate();
+        private void btnCube_Click(object sender, EventArgs e)
+        {
+            s = StaticShapes.GenerateCube(GetCanvasCenter(), 50);
+
+            resetAndGenerate();
+        }
+
+        private void btnSphere_Click(object sender, EventArgs e)
+        {
+            s = StaticShapes.GenerateSphere(GetCanvasCenter(), 10, 50);
+
+            resetAndGenerate();
+        }
+
+        private void btnCone_Click(object sender, EventArgs e)
+        {
+            s = StaticShapes.GenerateCone(GetCanvasCenter(), 50);
+            resetAndGenerate();
+        }
+
+        private void btnSandClock_Click(object sender, EventArgs e)
+        {
+            s = StaticShapes.GenerateSandClock(GetCanvasCenter(), 50);
+
+            resetAndGenerate();
         }
     }
 }
