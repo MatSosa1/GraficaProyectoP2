@@ -123,7 +123,7 @@ namespace Shape
             // Multiplicación de Matrices no es conmutativa: A * B != B * A
             for (int i = 0; i < Sizes.Count; i++)
             {
-                var radius = Sizes[i] * Math.Sin(rad / 2);
+                var radius = Sizes[i];
                 double ZInit = (spaceBetween / 2) * (Sizes.Count - 1);
 
                 for (int j = 0; j < NumLados; j++)
